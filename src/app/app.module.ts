@@ -11,13 +11,14 @@ const webXPanelFactory = () => () => {
   }
 }
 
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BasicSignalsComponent } from './basic-signals/basic-signals.component';
 import { SliderElementComponent } from './slider-element/slider-element.component';
 import { FormsModule } from '@angular/forms';
+import { APP_BASE_HREF } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -30,8 +31,10 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
+    { provide: APP_BASE_HREF, useValue: "./" },
     { provide: APP_INITIALIZER, useFactory: webXPanelFactory, multi: true }
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
