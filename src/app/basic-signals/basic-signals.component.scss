@@ -105,4 +105,12 @@
 
   #text-input {
     z-index: 3;
+    border: none;
+    box-shadow: inset 4px 4px 8px #c8d0e7, inset -4px -4px 8px #FFFFFF;
+    transition: box-shadow 0.5s;
+  }
+
+  #text-input:focus {    
+    outline: none; 
+    box-shadow: $onSurfaceShadow;
   }

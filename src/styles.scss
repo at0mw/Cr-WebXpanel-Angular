@@ -39,7 +39,8 @@ $onBackgroundShadow: 5px 5px 10px #181818, -5px -5px 10px #2c2c2c;
 $onSurfaceShadow: 6px 6px 12px #242424, -6px -6px 12px #4242427c;
 $onSurfacePressedShadow: inset 2px 2px 6px #242424, inset -2px -2px 6px #424242;
 $onForegroundShadow: 7px 5px 10px rgba(0, 0, 0, 1);
-
+$evenHighlight: -2px 2px 4px rgba($primaryVariant, 0.4),
+  -2px -2px 4px rgba($primaryVariant, 0.4);
 $onSurfaceShadowLiftedHighlighted: 8px 8px 16px #242424,
   -8px -8px 16px rgba($primaryVariant, 0.2);
 
