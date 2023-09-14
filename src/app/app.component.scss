@@ -1,0 +1,10 @@
+.ui-area {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+    //background-color: teal;
+    height: 100vh;
+    width: 100vw;
+}

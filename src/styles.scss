@@ -1,1 +1,130 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+  overflow-x: hidden;
+  overscroll-behavior: none; /* Stop annoying iphone browser elastic nonsense */
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.mat-icon {
+  vertical-align: middle;
+}
+
+// Area Colours
+$primaryColour: #353b48; //#FAFAFF; /* This is colour for main navigation etc... */
+$primaryVariant: #17bebb; /* Backup colour for main navigation */
+$secondaryColour: #fafaff; //#F28482 /* Highlight colour for main navigation, buttons and floating actions */
+$secondaryVariant: #5fb49c; //#FF6F59; /* Backup Highlight colour for main navigation, buttons and floating actions */
+$errorColour: #ff2200;
+
+$backgroundColour: #222222;
+$surfaceColour: #333333;
+//$navBarColour: #353b48;
+
+// Colours On Areas
+$onPrimaryColour: #fafaff;
+$onSecondaryColour: #000000;
+$onSecondaryVariantColour: #ffffff;
+$onBackgroundColour: #ffffff;
+$onSurfaceColour: #ffffff;
+$onErrorColour: #000000;
+
+// Shadows
+$onBackgroundShadow: 5px 5px 10px #181818, -5px -5px 10px #2c2c2c;
+$onSurfaceShadow: 6px 6px 12px #242424, -6px -6px 12px #4242427c;
+$onSurfacePressedShadow: inset 2px 2px 6px #242424, inset -2px -2px 6px #424242;
+$onForegroundShadow: 7px 5px 10px rgba(0, 0, 0, 1);
+
+$onSurfaceShadowLiftedHighlighted: 8px 8px 16px #242424,
+  -8px -8px 16px rgba($primaryVariant, 0.2);
+
+// Matches background, work needed for this
+$concaveElementGradientLight: linear-gradient(145deg, #e1e1e6, #ffffff);
+$concaveElementGradientDark: linear-gradient(145deg, #2e2e2e, #373737);
+
+html {
+  background-color: $backgroundColour;
+}
+
+.ui-modules-area {
+  margin: 20px;
+  padding: 20px;
+  background-color: $surfaceColour;
+  color: $onSurfaceColour;
+  border-radius: 28px;
+  border-radius: 30px;
+  box-shadow: $onBackgroundShadow;
+  z-index: 1;
+}
+
+.inpage-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $secondaryColour;
+  color: $onSecondaryColour;
+  border-radius: 4px;
+  box-shadow: $onSurfaceShadow;
+}
+
+.button {
+  cursor: pointer;
+  box-shadow: $onSurfaceShadow;
+  border-radius: 5px;
+  transition: background-color 0.5s, color 0.5s, transform 0.2s, box-shadow 0.2s;
+  width: 84px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $concaveElementGradientDark;
+  z-index: 2;
+}
+
+.button:active {
+  background-color: teal;
+  box-shadow: $onSurfacePressedShadow;
+  transform: scale(0.9);
+}
+
+.inpage-button:active {
+  background-color: $secondaryVariant;
+  color: $onSecondaryVariantColour;
+  transform: scale(0.9);
+  box-shadow: $onSurfacePressedShadow;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.control-area {
+  display: flex;
+}
+
+@media (max-width: 700px) {
+  .control-area {
+    display: flex;
+    flex-direction: column;
+    //width: 100%;
+    //max-width: 300px;
+  }
+
+  .ui-modules-area {
+    width: 80vw;
+    margin: 5% auto;
+  }
+}

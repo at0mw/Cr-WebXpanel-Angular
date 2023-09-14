@@ -1,0 +1,16 @@
+
+<label>{{ labelKey }}</label>
+<div class="slider-container">
+    <div class="slider-input-area">
+      <div class="range-slider">
+        <div #sliderThumb id="slider_thumb:1" class="range-slider_thumb shade-slider-thumb scalable">
+          <div class="thumb-text">{{ initialValue }}</div>
+        </div>
+        <div class="range-slider_line">
+          <div #sliderLine class="range-slider_line-fill" [style.width]="initialValue + '%'"></div>
+        </div>
+        <input #sliderInput class="range-slider_input" 
+               type="range" [(ngModel)]="initialValue" [min]="0" [max]="100" (input)="updateSliderVisuals(true)" (change)="sendSliderValue()">
+      </div>
+    </div>
+</div>
