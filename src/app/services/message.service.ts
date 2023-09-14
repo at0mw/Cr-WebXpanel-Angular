@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
+import { WebXPanelService } from './webxpanel.service';
 declare var CrComLib: any;
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessageService {
-  constructor() {}
+  constructor(private webXpanelService: WebXPanelService) {}
 
   sendActionMessage(actionJoinId: string): void {
+    this.webXpanelService.printStatus();
     console.log(`CrComLib :::: Publish :: Action : Join Id ${actionJoinId}`);
     CrComLib.publishEvent('b', actionJoinId, true);
     CrComLib.publishEvent('b', actionJoinId, false);

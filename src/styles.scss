@@ -90,7 +90,7 @@ html {
 .button:active {
   background-color: teal;
   box-shadow: $onSurfacePressedShadow;
-  transform: scale(0.9);
+  //transform: scale(0.9);
 }
 
 .inpage-button:active {
@@ -101,7 +101,7 @@ html {
 }
 
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+  font-variation-setings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 html,
 body {

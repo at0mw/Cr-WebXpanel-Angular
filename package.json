@@ -6,6 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "build:deployweb": "ch5-cli deploy -H 10.100.203.21 -p -t web dist/Cr-WebXpanel-Angular.ch5z",
+    "build:archive": "ch5-cli archive -p Cr-WebXpanel-Angular -d dist/Cr-web-xpanel-Angular -o dist",
     "test": "ng test"
   },
   "private": true,
@@ -18,6 +20,7 @@
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
+    "@crestron/ch5-crcomlib": "^2.5.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
