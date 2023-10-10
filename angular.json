@@ -17,9 +17,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cr-web-xpanel-angular",
+            "outputPath": "dist/cr-webxpanel-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "baseHref": "/cr-webxpanel-angular/",
             "polyfills": [
               "zone.js"
             ],

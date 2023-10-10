@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-slider-element',
@@ -14,6 +15,7 @@ export class SliderElementComponent {
 
   thumbActive: boolean = false;
   thumbDisappearTimeout: any;
+  constructor(private messageService: MessageService) {}
 
   
   ngAfterViewInit() {
@@ -66,5 +68,6 @@ export class SliderElementComponent {
 
   sendSliderValue() {
     console.log('Final Slider Value: ', this.initialValue);
+    this.messageService.sendAnalogMessage("1", this.initialValue);
   }
 }

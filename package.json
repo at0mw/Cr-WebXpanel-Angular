@@ -1,13 +1,14 @@
 {
-  "name": "cr-web-xpanel-angular",
+  "name": "cr-webxpanel-angular",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "build:deployweb": "ch5-cli deploy -H 10.100.203.21 -p -t web dist/Cr-WebXpanel-Angular.ch5z",
-    "build:archive": "ch5-cli archive -p Cr-WebXpanel-Angular -d dist/Cr-web-xpanel-Angular -o dist",
+    "build:deployweb": "ch5-cli deploy -H 10.100.203.21 -p -t web dist/cr-webxpanel-angular.ch5z",
+    "build:archive": "ch5-cli archive -p cr-webxpanel-angular -d dist/cr-webxpanel-angular -o dist",
+    "build:onestep": "npm run build:archive && npm run build:deployweb",
     "test": "ng test"
   },
   "private": true,
