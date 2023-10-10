@@ -7,6 +7,7 @@ import { SliderElementComponent } from './slider-element/slider-element.componen
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from "@angular/common";
 import { WebXPanelService } from "./services/web.xpanel.service";
+import { DisconnectOverlayComponent } from './disconnect-overlay/disconnect-overlay.component';
 
 
 const webXPanelFactory = (webService: WebXPanelService) => () => {
@@ -17,7 +18,8 @@ const webXPanelFactory = (webService: WebXPanelService) => () => {
   declarations: [
     AppComponent,
     BasicSignalsComponent,
-    SliderElementComponent
+    SliderElementComponent,
+    DisconnectOverlayComponent
   ],
   imports: [
     BrowserModule,
