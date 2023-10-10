@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MessageService } from '../services/message.service';
+import { AnalogJoins } from '../protocol/constants/analog-joins';
 
 @Component({
   selector: 'app-slider-element',
@@ -31,7 +32,7 @@ export class SliderElementComponent {
     const sliderInput = this.sliderInput.nativeElement;
     const sliderThumb = this.sliderThumb.nativeElement;
     const sliderLine = this.sliderLine.nativeElement;
-
+    
     if (sliderInput && sliderThumb && sliderLine) {
       if(showThumb){
         this.showThumbStatus(sliderThumb, sliderInput);
@@ -68,6 +69,6 @@ export class SliderElementComponent {
 
   sendSliderValue() {
     console.log('Final Slider Value: ', this.initialValue);
-    this.messageService.sendAnalogMessage("1", this.initialValue);
+    this.messageService.sendAnalogMessage(AnalogJoins.Slider1, this.initialValue);
   }
 }

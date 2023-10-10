@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { MessageService } from '../services/message.service';
+import { StringJoins } from '../protocol/constants/string-joins';
+import { DigitalJoins } from '../protocol/constants/digital-joins';
+
 declare var CrComLib: any;
 
 @Component({
@@ -8,8 +11,9 @@ declare var CrComLib: any;
   styleUrls: ['./basic-signals.component.scss']
 })
 export class BasicSignalsComponent {
+  DigitalJoins = DigitalJoins;
   constructor(private messageService: MessageService) {
-    CrComLib.subscribeState('s', "1", (value: string) => {
+    CrComLib.subscribeState('s', StringJoins.TextBox1, (value: string) => {
       if (value) {
         this.handleTextUpdate(value);
       }
@@ -18,8 +22,8 @@ export class BasicSignalsComponent {
   inputValue: string = '';
   messageReceived: string = '';
 
-  buttonPressed(buttonId: number): void {
-    this.messageService.sendActionMessage(buttonId.toString());
+  buttonPressed(buttonId: string): void {
+    this.messageService.sendActionMessage(buttonId);
   }
 
   handleTextInput() {
