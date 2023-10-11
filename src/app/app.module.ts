@@ -7,7 +7,9 @@ import { SliderElementComponent } from './slider-element/slider-element.componen
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from "@angular/common";
 import { WebXPanelService } from "./services/web.xpanel.service";
+import { ConnectionEventService } from './services/connection.event.service';
 import { DisconnectOverlayComponent } from './disconnect-overlay/disconnect-overlay.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 const webXPanelFactory = (webService: WebXPanelService) => () => {
@@ -23,7 +25,8 @@ const webXPanelFactory = (webService: WebXPanelService) => () => {
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: webXPanelFactory, multi: true, deps: [WebXPanelService] },

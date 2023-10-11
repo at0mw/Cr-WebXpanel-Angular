@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MessageService } from '../services/message.service';
 import { StringJoins } from '../protocol/constants/string-joins';
 import { DigitalJoins } from '../protocol/constants/digital-joins';
+import { ConnectionEventService } from '../services/connection.event.service';
 
 declare var CrComLib: any;
 
@@ -12,7 +13,7 @@ declare var CrComLib: any;
 })
 export class BasicSignalsComponent {
   DigitalJoins = DigitalJoins;
-  constructor(private messageService: MessageService) {
+  constructor(private messageService: MessageService, private connectionService: ConnectionEventService) {
     CrComLib.subscribeState('s', StringJoins.TextBox1, (value: string) => {
       if (value) {
         this.handleTextUpdate(value);
@@ -24,6 +25,7 @@ export class BasicSignalsComponent {
 
   buttonPressed(buttonId: string): void {
     this.messageService.sendActionMessage(buttonId);
+    this.connectionService.informFetchTokenFailed();
   }
 
   handleTextInput() {

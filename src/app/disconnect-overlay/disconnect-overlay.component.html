@@ -1,2 +1,15 @@
-<p>disconnect-overlay works!</p>
-<i></i>
+<div class="full-screen-overlay" [style.display]="isOverlayVisible ? 'flex' : 'none'">
+    <div class="feedback-area">
+        <div class="icon-area">
+            <fa-icon [icon]="currentIcon" [ngClass]="{'fa-spin': isSpinning}" class="custom-icon"></fa-icon>
+        </div>
+        <div class="system-info">
+            <h1 class="system-info-title info-text">System</h1>
+            <h1 class="system-info-state">{{connectionState}}</h1>
+        </div>
+        <div *ngIf="infoText" class="system-info">
+            <h1 class="system-info-title info-text">Feedback</h1>
+            <h3 class="system-info-state">{{infoText}}</h3>
+        </div>
+    </div>
+</div>

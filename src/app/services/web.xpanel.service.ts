@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+
 import WebXPanel, { WebXPanelConfigParams, WebXPanelEvents, isActive } from '@crestron/ch5-webxpanel';
+import { ConnectionEventService } from './connection.event.service';
 const configuration: Partial<WebXPanelConfigParams> = {
 	// host: 'ip_address | hostname', // defaults to window.location.host
 	ipId: '3|0x03' // string representing a hex value. Might contain "0x" or not. Defaults to "0x03"
@@ -10,17 +12,18 @@ const configuration: Partial<WebXPanelConfigParams> = {
 	providedIn: 'root'
 })
 export class WebXPanelService {
-	constructor() {
-		WebXPanel.addEventListener(WebXPanelEvents.FETCH_TOKEN_FAILED, this.informFailedFetchToken);
-		WebXPanel.addEventListener(WebXPanelEvents.CONNECT_WS, this.informConnecting);
-		WebXPanel.addEventListener(WebXPanelEvents.CONNECT_CIP, this.informConnectedToWebXpanel);
-		WebXPanel.addEventListener(WebXPanelEvents.DISCONNECT_CIP, this.informDisconnectedToWebXpanel);
+	constructor(private eventService: ConnectionEventService) {
+		this.setupEventListeners();
+	}
 
-		WebXPanel.addEventListener(WebXPanelEvents.AUTHENTICATION_REQUIRED, this.informAuthenticationRequired);    
-		WebXPanel.addEventListener(WebXPanelEvents.AUTHENTICATION_FAILED, this.informAuthenticationFailed); 
-		WebXPanel.addEventListener(WebXPanelEvents.ERROR_WS, this.informError);
-    
-    
+	private setupEventListeners() {
+		WebXPanel.addEventListener(WebXPanelEvents.FETCH_TOKEN_FAILED, () => this.informFailedFetchToken());
+		WebXPanel.addEventListener(WebXPanelEvents.CONNECT_WS, () => this.informConnecting());
+		WebXPanel.addEventListener(WebXPanelEvents.CONNECT_CIP, (event: CustomEvent) => this.informConnectedToWebXpanel(event));
+		WebXPanel.addEventListener(WebXPanelEvents.DISCONNECT_CIP, () => this.informDisconnectedToWebXpanel());
+		WebXPanel.addEventListener(WebXPanelEvents.AUTHENTICATION_REQUIRED, () => this.informAuthenticationRequired());
+		WebXPanel.addEventListener(WebXPanelEvents.AUTHENTICATION_FAILED, () => this.informAuthenticationFailed());
+		WebXPanel.addEventListener(WebXPanelEvents.ERROR_WS, () => this.informError());
 	}
 
 	initializeWebXPanel() {
@@ -36,33 +39,41 @@ export class WebXPanelService {
 
 	informConnecting() {
 		console.log('WebXpanel is connecting...');
+		this.eventService.informConnecting();
 	}
 
 	informConnectedToWebXpanel(event: CustomEvent) {
 		console.log('WebXpanel has connected...');
 		const { url, ipId, roomId, tokenSource, tokenUrl } = event.detail;
-		console.log(`
-      Connected to ${url}, ipId: ${ipId}, roomId: ${roomId}, tokenSource: ${tokenSource}, tokenUrl: ${tokenUrl}
-    `);
+		console.log(
+			`Connected to ${url}, ipId: ${ipId}, roomId: ${roomId}, tokenSource: ${tokenSource}, tokenUrl: ${tokenUrl}`
+		);
+
+		this.eventService.informConnected();
 	}
 
-  informDisconnectedToWebXpanel() {
+	informDisconnectedToWebXpanel() {
 		console.log('WebXpanel has disconnected...');
+		this.eventService.informDisconnected();
 	}
 
 	informFailedFetchToken() {
 		console.log('WebXpanel has failed to fetch the token...');
+		this.eventService.informFetchTokenFailed();
 	}
 
-  informAuthenticationRequired() {
+	informAuthenticationRequired() {
 		console.log('WebXpanel Authentication required...');
-  }
+		this.eventService.onAuthenticationRequired();
+	}
 
-  informAuthenticationFailed() {
-		console.log('WebXpanel Authentication failed...');    
-  }
+	informAuthenticationFailed() {
+		console.log('WebXpanel Authentication failed...');
+		this.eventService.onAuthenticationFailed();
+	}
 
-  informError() {
-		console.log('WebXpanel Connection Error...');    
-  }
+	informError() {
+		console.log('WebXpanel Connection Error...');
+		this.eventService.informErrorWs();
+	}
 }
