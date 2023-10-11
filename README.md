@@ -1,6 +1,9 @@
 # CrWebXpanelAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.2.
+The project is a very simple test of basic Analog, Digital and Serial signals inside of CrComLib. It uses Crestron WebXpanel to relay the signals to a crestron control system.
+
+## Deploying to Server
+To deploy the project to a processor, run the ng build command and then the build:onestep command to package and push the project. The correct ip address as well as username and password for the processor will be required.
 
 ## Development server
 
@@ -25,3 +28,4 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.2.
